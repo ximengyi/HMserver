@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="save" content="history">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/base.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/button.css')}}">>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/common.css')}}">>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/main.css')}}">>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap.min.css')}}">>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='js/libs/modernizr.min.js')}}">>
+    <STYLE>
+     .saveHistory  {behavior:url(#default#savehistory);}
+</STYLE>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+  <div><a class="ft button blue"  style="float:left;" href="{{url_for('.hello_world')}}">返回</a></div>
+                <div class="jumbotron">
+                    <h1>
+                        统计作业情况
+                    </h1>
+                </div>
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                             <span class="sr-only">Toggle navigation</span>
+                             <span class="icon-bar"></span>
+                             <span class="icon-bar"></span>
+                             <span class="icon-bar"></span>
+                            </button>
+                        <a class="navbar-brand" href="#">输入年级班级查找</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <form class="navbar-form navbar-left" role="search" method="post" action="{{url_for('.statistics')}}">
+                            <div class="form-group">年级
+                                <select name="grade" id="grade" class="saveHistory">
+										<option value="一">一年级</option>
+										<option value="二">二年级</option>
+										<option value="三">三年级</option>
+										</select>班级
+                                <select name="stuclass" id="stuclass"   class="saveHistory">
+										<option value="一">一班</option>
+										<option value="二">二班</option>
+										<option value="三" selected = "selected">三班</option>
+										<option value="四">四班</option>
+										<option value="五">五班</option>
+										</select>日期
+                                <input type="text" class="form-control" name="comdate" value={{comdate}}>课程
+                                <select name="subject" id="subject"  class="saveHistory">
+										<option value="语文">语文</option>
+										<option value="数学">数学</option>
+										<option value="英语">英语</option>
+										<option value="物理">物理</option>
+										<option value="化学">化学</option>
+										</select>作业
+                                <select name="sub_type" id="worktype"  class="saveHistory">
+									<option value="一课一练">一课一练</option>
+									<option value="周末卷">周末卷</option>
+									<option value="所有">所有</option>
+									</select>成绩
+                                <select name="result" id="mark"  class="saveHistory">
+										<option value="优">优</option>
+										<option value="良">良</option>
+										<option value="中">中</option>
+										<option value="差">差</option>
+										<option value="不评分">不评分</option>
+										<option value="所有">所有</option>
+										</select>
+                  </div> <button type="submit" class="btn btn-default" onclick=history.go(-1)>统计</button>
+                        </form>
+
+                    </div>
+
+                </nav>
+                <h3 class="text-center"><strong>最近作业提交结果</strong></h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                学号
+                            </th>
+                            <th>
+                                姓名
+                            </th>
+                            <th>
+                                科目
+                            </th>
+                            <th>
+                                班级
+                            </th>
+                            <th>
+                                年级
+                            </th>
+                            <th>
+                                类别
+                            </th>
+                            <th>
+                                状态
+                            </th>
+                            <th>
+                                日期
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                   {% set count = 0 %}
+                        {% for entry in entries %}
+                          {% set count=count+1 %}
+
+                        <tr>
+                            <td>
+                                {{ entry[0] }}
+                            </td>
+                            <td>
+                                {{ entry[1] }}
+                            </td>
+                            <td>
+                                {{ entry[2] }}
+                            </td>
+                            <td>
+                                {{ entry[3] }}班
+                            </td>
+                            <td>
+                                {{ entry[4] }}年级
+                            </td>
+                            <td>
+                                {{ entry[5] }}
+                            </td>
+                            <td>
+                                已交
+                            </td>
+                            <td>
+                                {{ entry[6] }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <!-- <tr><td>{{grade}}年{{stuclass}}班人数为：{{stucount}}人</td><td>此次查询作业数量为{{worknum}}本</td> </tr> -->
+                    </tbody>
+                </table>
+                <br> <br> <br> <br>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <blockquote>
+                    <p>
+                        <span>锲而舍之，朽木不折；锲而不舍，金石可镂。——《荀子·劝学》</span>
+                    </p>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+var obj_grade = document.getElementById(grade);
+var obj_class = document.getElementById(stuclass);
+var obj_subject = document.getElementById(subject);
+var obj_worktype = document.getElementById(worktype);
+var obj_mark = document.getElementById(mark);
+
+function changeval(){
+  var selected_grade = document.getElementById(grade).selectedIndex;
+  var selected_class = document.getElementById(stuclass).selectedIndex;
+  var selected_subject = document.getElementById(subject).selectedIndex;
+  var selected_worktype = document.getElementById(worktype).selectedIndex;
+  var selected_mark = document.getElementById(mark).selectedIndex;
+}
+function setval(){
+  var selected_grade = document.getElementById(grade).selectedIndex;
+  var selected_class = document.getElementById(stuclass).selectedIndex;
+  var selected_subject = document.getElementById(subject).selectedIndex;
+  var selected_worktype = document.getElementById(worktype).selectedIndex;
+  var selected_mark = document.getElementById(mark).selectedIndex;
+
+   obj_grade[selected_grade].selectd==true ;
+   obj_grade[selected_grade].defaultSelected ==true ;
+
+   obj_class[selected_class].selectd==true ;
+   obj_class[selected_class].defaultSelected==true ;
+
+   obj_subject[selected_subject].selectd==true ;
+    obj_subject[selected_subject].defaultSelected==true ;
+
+   obj_worktype[selected_worktype].selectd==true;
+   obj_worktype[selected_worktype].defaultSelected==true;
+
+   obj_mark[selected_mark].selectd==true ;
+   obj_mark[selected_mark].defaultSelected==true ;
+}
+</script>
+</html>

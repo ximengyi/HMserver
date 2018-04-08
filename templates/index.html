@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/base.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/button.css')}}">>
+</head>
+<style media="screen">
+  .ft{
+    font-size: 30px
+  }
+  .fg{
+    font-size: 50px
+  }
+</style>
+
+<body>
+    <br><br><br><br><br><br><br>
+    <h1 class="fg" style="text-align:center; color:white;">{{title}}</h1>
+    <br>
+    <hr>
+    <br><br><br>
+    <!-- <div><a class="button purple" href="{{url_for('.view')}}">查询作业情况</a></div> -->
+    <div><a class="ft button blue" href="{{url_for('.statistics')}}">统计单日作业情况</a></div><br>
+    <div><a class="ft button blue" href="{{url_for('.singlest')}}">个人作业情况汇总</a></div><br>
+    <div>
+        <a class="ft button green" href="{{url_for('.score')}}">平时作业总评分</a>
+    </div><br>
+
+    <!-- <div><a class="button red" href="{{url_for('.check')}}">开始检查作业</a></div><br>-->
+    <div><a class="ft button orange" href="{{url_for('.student')}}">录入学生信息</a></div><br>
+</body>

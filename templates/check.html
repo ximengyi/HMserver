@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/base.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/button.css')}}">>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/common.css')}}">>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/main.css')}}">>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap.min.css')}}">>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='js/libs/modernizr.min.js')}}">>
+</head>
+<body>
+	<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column" >
+			<div class="jumbotron">
+				<h1>
+		       hello world
+				</h1>
+				<p>
+					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+				</p>
+				<p>
+					 <a class="btn btn-primary btn-large" href="#">Learn more</a>
+				</p>
+			</div>
+			<form class="form-horizontal" role="form" action="{{url_for('.docheck')}}"  method="post">
+				<div class="form-group">
+					 <label for="inputEmail3" class="col-sm-2 control-label">RFID</label>
+					<div class="col-sm-5">
+						<input type="text" name="rfid" class="form-control" id="inputEmail3" />
+					</div>
+				</div>
+				<div class="form-group">
+					 <label for="inputPassword3" class="col-sm-2 control-label">科目</label>
+					<div class="col-sm-5">
+						<input type="text" name="subject" class="form-control" id="inputPassword3" />
+					</div>
+				</div>
+				<div class="form-group">
+					 <label for="inputPassword3" class="col-sm-2 control-label">提交次数</label>
+					<div class="col-sm-5">
+						<input type="text" name="comnum" class="form-control" id="inputPassword3" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						 <button type="submit" class="btn btn-primary btn-default col-md-3" >提交信息</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>
