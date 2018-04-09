@@ -72,7 +72,9 @@ def statistics():
      # print len(cursor.fetchall())
      #context={'subject':subject,'comdate':comdate}
      ####endif
-     return render_template('statistics.html', entries=cursor, grade = grade, stuclass=stuclass ,stucount=cursor2.fetchone()[0],worknum=worknum)
+     stucount=cursor2.fetchone()[0]
+     weijiao = stucount - worknum
+     return render_template('statistics.html', entries=cursor, grade = grade, stuclass=stuclass ,stucount=stucount,worknum=worknum,weijiao=weijiao)
   else:
      #cursor = c.execute("SELECT STUNUM, NAME, CLASS,GRADE  from STUDENT")
      #context={'subject':'','comdate':''}
