@@ -1,5 +1,6 @@
 #-*- coding: UTF-8 -*-
 import sys
+import copy
 reload(sys)
 sys.setdefaultencoding('utf-8')
 from flask import Flask, request, session, g, redirect, url_for, abort, \
@@ -129,7 +130,7 @@ def singlest():
      entries3 =[]
      cwork=0
      for value in rows:
-
+         listdate = []
          e = conn.cursor()
          comdate = value[3]
          print value[3]
@@ -144,12 +145,15 @@ def singlest():
               listdate.append(subject)
               listdate.append(sub_type)
               listdate.append(value[3])
-              entries3.append(listdate)
+              templist = copy.copy(listdate)
+              entries3.append(templist)
+
          else:
+
              print wrow
          cursor4.close()
          e.close()
-     print listdate
+     #print listdate
      print entries3
      return render_template('singlest.html', entries=cursor,entries2=cursor2, weijiao =entries3,cworks=cwork, **locals())
 
