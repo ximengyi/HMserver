@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="save" content="history">
-    <title>Document</title>
+    <title>统计单日作业情况</title>
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/base.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/button.css')}}">>
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/common.css')}}">>
@@ -15,6 +15,9 @@
         .table-striped th {
           text-align: center;
         }
+        .ft{
+          font-size: 10px
+        }
       </style>
 </head>
 
@@ -22,10 +25,10 @@
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">
-  <div><a class="ft button blue"  style="float:left;" href="{{url_for('.hello_world')}}">返回</a></div>
+
                 <div class="jumbotron">
                     <h1>
-                        统计作业情况
+                        统计单日作业情况
                     </h1>
                 </div>
                 <nav class="navbar navbar-default" role="navigation">
@@ -54,7 +57,7 @@
 										<option value="四">四班</option>
 										<option value="五">五班</option>
 										</select>日期
-                                <input type="text" class="form-control" name="comdate" value={{comdate}}>课程
+                                <input type="text" id="comdate" class="form-control" name="comdate" value="2018-03-10">课程
                                 <select name="subject" id="subject"  class="saveHistory">
 										<option value="语文">语文</option>
 										<option value="数学">数学</option>
@@ -75,14 +78,17 @@
 										<option value="不评分">不评分</option>
 										<option value="所有">所有</option>
 										</select>
-                  </div> <button type="submit" class="btn btn-default" onclick=history.go(-1)>统计</button>
+                  </div> <button type="submit" class="btn btn-default" onclick=getval()>统计</button>
+                    <a class=" ft buttonback blue"  href="{{url_for('.hello_world')}}">返回</a>
+
+
                         </form>
 
                     </div>
 
                 </nav>
-                <h3 class="text-center"><strong>最近作业提交结果</strong></h3>
-                <table class="table table-striped">
+                <!-- <h3 class="text-center"><strong>最近作业提交结果</strong></h3> -->
+                <!-- <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>
@@ -143,9 +149,9 @@
                             </td>
                         </tr>
                         {% endfor %}
-                        <!-- <tr><td>{{grade}}年{{stuclass}}班人数为：{{stucount}}人</td><td>此次查询作业数量为{{worknum}}本</td> </tr> -->
+                        <tr><td>{{grade}}年{{stuclass}}班人数为：{{stucount}}人</td><td>此次查询作业数量为{{worknum}}本</td> </tr> -->
                     </tbody>
-                </table>
+                </table> -->
                 <br> <br> <br> <br>
             </div>
         </div>
@@ -164,40 +170,33 @@
 
 </body>
 <script>
-var obj_grade = document.getElementById(grade);
-var obj_class = document.getElementById(stuclass);
-var obj_subject = document.getElementById(subject);
-var obj_worktype = document.getElementById(worktype);
-var obj_mark = document.getElementById(mark);
 
-function changeval(){
-  var selected_grade = document.getElementById(grade).selectedIndex;
-  var selected_class = document.getElementById(stuclass).selectedIndex;
-  var selected_subject = document.getElementById(subject).selectedIndex;
-  var selected_worktype = document.getElementById(worktype).selectedIndex;
-  var selected_mark = document.getElementById(mark).selectedIndex;
+
+  var obj_grade = document.getElementById("grade");
+  var obj_class = document.getElementById("stuclass");
+  var obj_subject = document.getElementById("subject");
+  var obj_comdate = document.getElementById("comdate");
+
+  if (typeof(Storage) !== "undefined") {
+  obj_grade.value =localStorage.getItem("selected_grade") ;
+  obj_class.value=localStorage.getItem("selected_class");
+  obj_subject.value=localStorage.getItem("selected_subject");
+  obj_comdate.value=localStorage.getItem("selected_comdate");
+
+
 }
-function setval(){
-  var selected_grade = document.getElementById(grade).selectedIndex;
-  var selected_class = document.getElementById(stuclass).selectedIndex;
-  var selected_subject = document.getElementById(subject).selectedIndex;
-  var selected_worktype = document.getElementById(worktype).selectedIndex;
-  var selected_mark = document.getElementById(mark).selectedIndex;
 
-   obj_grade[selected_grade].selectd==true ;
-   obj_grade[selected_grade].defaultSelected ==true ;
+function getval(){
+   var selected_grade = document.getElementById("grade").value;
+   var selected_class = document.getElementById("stuclass").value;
+   var selected_subject = document.getElementById("subject").value;
+   var selected_comdate = document.getElementById("comdate").value;
 
-   obj_class[selected_class].selectd==true ;
-   obj_class[selected_class].defaultSelected==true ;
+   localStorage.setItem("selected_grade", selected_grade);
+   localStorage.setItem("selected_class", selected_class);
+   localStorage.setItem("selected_subject", selected_subject);
+   localStorage.setItem("selected_comdate", selected_comdate);
 
-   obj_subject[selected_subject].selectd==true ;
-    obj_subject[selected_subject].defaultSelected==true ;
-
-   obj_worktype[selected_worktype].selectd==true;
-   obj_worktype[selected_worktype].defaultSelected==true;
-
-   obj_mark[selected_mark].selectd==true ;
-   obj_mark[selected_mark].defaultSelected==true ;
 }
 </script>
 </html>

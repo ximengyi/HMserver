@@ -80,7 +80,7 @@ def statistics():
      rows = cursor.fetchall()
      comdate =rows[0][0]
      sub_type = rows[0][1]
-     sql ="select student.stunum ,name,subject, class,grade,sub_type,comdate from STUDENT, COMSTU where STUDENT.STUNUM=COMSTU.STUNUM AND COMSTU.sub_type=:sub_type AND COMSTU.comdate=:comdate"
+     sql ="select student.stunum ,name,subject, class,grade,sub_type,comdate from STUDENT, COMSTU where STUDENT.STUNUM=COMSTU.STUNUM AND COMSTU.sub_type=:sub_type AND COMSTU.comdate=:comdate ORDER BY student.stunum  ASC "
      cursor= c.execute(sql,{'sub_type':sub_type,'comdate':comdate})
 
 

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>个人作业情况汇总</title>
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/base.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/button.css')}}">>
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/common.css')}}">>
@@ -14,6 +14,9 @@
         .table-striped th {
           text-align: center;
         }
+        .ft{
+          font-size: 10px
+        }
       </style>
 </head>
 
@@ -21,7 +24,7 @@
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">
-  <div><a class="ft button blue"  style="float:left;" href="{{url_for('.hello_world')}}">返回</a></div>
+
                 <div class="jumbotron">
                     <h1>
                         个人作业情况汇总
@@ -72,6 +75,7 @@
 
                             </div>
                             <button type="submit" class="btn btn-default" onclick=getval()>统计</button>
+                            <a class="ft buttonback blue"  href="{{url_for('.hello_world')}}">返回</a>
                         </form>
 
                     </div>
