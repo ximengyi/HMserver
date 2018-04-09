@@ -96,9 +96,9 @@
                             <th>
                                成绩累计
                             </th>
-                            <th>
-                                未交作业次数
-                            </th>
+                            <!-- <th>
+
+                            </th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -111,7 +111,7 @@
                                 {{ entry[1] }}
                             </td>
                             <td>
-                                {{ cworks }}
+
                             </td>
                             <!-- <td>
                             {{ entry[2] }}
@@ -130,6 +130,9 @@
                             </td>-->
                         </tr>
                         {% endfor %}
+                        <tr>
+                          <td>未交</td><td>  {{ cworks }}</td>
+                        </tr>
                     </tbody>
                 </table>
                 <br> <br> <br> <br>
