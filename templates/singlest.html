@@ -108,7 +108,7 @@
                                 {{ entry[0] }}
                             </td>
                             <td>
-                                {{ entry[1] }}
+                                {{ entry[2] }}
                             </td>
                             <td>
 
@@ -275,28 +275,29 @@
   var obj_bdate = document.getElementById("bdate");
   var obj_edate = document.getElementById("edate");
   var obj_subject = document.getElementById("subject");
-  var obj_worktyp = document.getElementById("worktype");
+  var obj_worktype = document.getElementById("worktype");
 
   if (typeof(Storage) !== "undefined") {
-  obj_grade.value =localStorage.getItem("selected_grade") ;
-  obj_class.value=localStorage.getItem("selected_class");
+  obj_stunum.value =localStorage.getItem("selected_stunum") ;
+  obj_bdate.value=localStorage.getItem("selected_bdate");
+  obj_edate.value=localStorage.getItem("selected_edate");
   obj_subject.value=localStorage.getItem("selected_subject");
   obj_worktype.value=localStorage.getItem("selected_worktype");
-  obj_mark.value=localStorage.getItem("selected_mark");
+
 
 }
 
 function getval(){
-   var selected_grade = document.getElementById("stunum").value;
-   var selected_class = document.getElementById("bdate").value;
-   var selected_subject = document.getElementById("edate").value;
-   var selected_worktype = document.getElementById("subject").value;
-   var selected_mark = document.getElementById("worktype").value;
-   localStorage.setItem("selected_grade", selected_grade);
-   localStorage.setItem("selected_class", selected_class);
+   var selected_stunum = document.getElementById("stunum").value;
+   var selected_bdate = document.getElementById("bdate").value;
+   var selected_edate = document.getElementById("edate").value;
+   var selected_subject = document.getElementById("subject").value;
+   var selected_worktype = document.getElementById("worktype").value;
+   localStorage.setItem("selected_stunum", selected_stunum);
+   localStorage.setItem("selected_bdate", selected_bdate);
+   localStorage.setItem("selected_edate", selected_edate);
    localStorage.setItem("selected_subject", selected_subject);
    localStorage.setItem("selected_worktype", selected_worktype);
-   localStorage.setItem("selected_mark", selected_mark);
 }
 </script>
 </html>

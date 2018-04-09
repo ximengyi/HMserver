@@ -111,14 +111,14 @@ def singlest():
      #str = " "
      #str =  grade + stuclass + stunum + subject + sub_type + begindate + enddate
      # STUNUM,SUBJECT,SUB_TYPE,
-     sql = "select RESULT,count(RESULT) from COMSTU "
+     sql = "select RESULT,mark,count(RESULT)from COMSTU,score "
      #if sub_type == "所有":
      #   sql = sql + "where COMDATE<=:enddate and COMDATE>=:begindate and STUNUM=:stunum  and SUBJECT=:subject "
      #   sql = sql + " group by SUBJECT,SUB_TYPE,RESULT "
      #   cursor= c.execute(sql,  { 'begindate':begindate,'enddate':enddate,'stunum':stunum,'subject':subject} )
      #else:
-     sql = sql + "where COMDATE<=:enddate and COMDATE>=:begindate and STUNUM=:stunum  and SUBJECT=:subject  and SUB_TYPE=:sub_type"
-     sql = sql + " group by SUBJECT,SUB_TYPE,RESULT "
+     sql = sql + "where comstu.result=score.val and COMDATE<=:enddate and COMDATE>=:begindate and STUNUM=:stunum  and SUBJECT=:subject  and SUB_TYPE=:sub_type"
+     sql = sql + " group by SUBJECT,SUB_TYPE,RESULT order by mark desc"
      sqlb = "select * from comstu where  stunum=:stunum and comdate>=:begindate and comdate<=:enddate and SUBJECT=:subject  and SUB_TYPE=:sub_type"
      sqld = "select * from comstu where  comdate>=:begindate and comdate <=:enddate and subject=:subject and sub_type=:sub_type group by comdate HAVING count(comdate)>1"
      sqle = "select * from comstu where stunum=:stunum and comdate =:comdate and sub_type=:sub_type and subject=:subject"
@@ -158,7 +158,7 @@ def singlest():
      return render_template('singlest.html', entries=cursor,entries2=cursor2, weijiao =entries3,cworks=cwork, **locals())
 
   else:
-      sql = "select RESULT,count(RESULT) from COMSTU group by RESULT"
+      sql = "select RESULT,mark,count(RESULT) from COMSTU,score where comstu.result=score.val group by RESULT order by mark desc"
       #sql = sql + " group by SUBJECT,SUB_TYPE,RESULT "
       cursor = c.execute(sql)
       return render_template('singlest.html', entries=cursor, **locals())
