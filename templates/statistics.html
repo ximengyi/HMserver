@@ -59,7 +59,7 @@
 										<option value="四">四班</option>
 										<option value="五">五班</option>
 										</select>日期
-                                <input type="text" class="form-control" name="comdate" value={{comdate}}>课程
+                                <input type="text" class="form-control" id="comdate" name="comdate" value=>课程
                                 <select name="subject" id="subject"  class="saveHistory">
 										<option value="语文">语文</option>
 										<option value="数学">数学</option>
@@ -162,12 +162,14 @@
 
   var obj_grade = document.getElementById("grade");
   var obj_class = document.getElementById("stuclass");
+  var obj_comdate = document.getElementById("comdate");
   var obj_subject = document.getElementById("subject");
   var obj_worktype = document.getElementById("worktype");
   var obj_mark = document.getElementById("mark");
   if (typeof(Storage) !== "undefined") {
   obj_grade.value =localStorage.getItem("selected_grade") ;
   obj_class.value=localStorage.getItem("selected_class");
+  obj_comdate.value=localStorage.getItem("selected_comdate");
   obj_subject.value=localStorage.getItem("selected_subject");
   obj_worktype.value=localStorage.getItem("selected_worktype");
   obj_mark.value=localStorage.getItem("selected_mark");
@@ -177,11 +179,13 @@
 function getval(){
    var selected_grade = document.getElementById("grade").value;
    var selected_class = document.getElementById("stuclass").value;
+   var selected_comdate = document.getElementById("comdate").value;
    var selected_subject = document.getElementById("subject").value;
    var selected_worktype = document.getElementById("worktype").value;
    var selected_mark = document.getElementById("mark").value;
    localStorage.setItem("selected_grade", selected_grade);
    localStorage.setItem("selected_class", selected_class);
+    localStorage.setItem("selected_comdate", selected_comdate);
    localStorage.setItem("selected_subject", selected_subject);
    localStorage.setItem("selected_worktype", selected_worktype);
    localStorage.setItem("selected_mark", selected_mark);

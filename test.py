@@ -61,20 +61,25 @@ def statistics():
      else: # 当选择某个成绩的进行统计时，只需要统计已交的作业即可
         sql = sql + "AND SUB_TYPE=:sub_type AND RESULT=:result AND COMDATE=:comdate))"
 
+
      #sql1 = "select STUNUM,NAME,CLASS,GRADE,'未交',:comdate FROM STUDENT WHERE CLASS=:stuclass AND  (STUNUM "
      #sql1 = sql1+ "NOT IN (select STUNUM FROM COMSTU WHERE SUBJECT=:subject "
      #sql1 = sql1+ "AND SUB_TYPE=:sub_type AND COMDATE=:comdate))"
      #sql = sql + ' UNION ' + sql1
      sqlb = "select count(*) FROM STUDENT  WHERE CLASS=:stuclass AND GRADE=:grade "
+     sqlc = "select count(*) FROM comstu  WHERE  comdate=:comdate and subject=:subject and sub_type=:sub_type "
      cursor= c.execute(sql,  {'stuclass':stuclass,'subject':subject,'sub_type':sub_type, 'result':result,'comdate':comdate} )
      worknum = len(cursor.fetchall())
      cursor= c.execute(sql,  {'stuclass':stuclass,'subject':subject,'sub_type':sub_type, 'result':result,'comdate':comdate} )
      cursor2 =b.execute(sqlb,{'stuclass':stuclass,'grade':grade})
+     stucount=cursor2.fetchone()[0]
+     cursor3 =b.execute(sqlc,{'subject':subject,'sub_type':sub_type, 'comdate':comdate})
+     yijiao=cursor3.fetchone()[0]
      # print len(cursor.fetchall())
      #context={'subject':subject,'comdate':comdate}
      ####endif
-     stucount=cursor2.fetchone()[0]
-     weijiao = stucount - worknum
+
+     weijiao = stucount - yijiao
      return render_template('statistics.html', entries=cursor, grade = grade, stuclass=stuclass ,stucount=stucount,worknum=worknum,weijiao=weijiao)
   else:
      #cursor = c.execute("SELECT STUNUM, NAME, CLASS,GRADE  from STUDENT")
